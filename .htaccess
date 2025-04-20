@@ -1,0 +1,43 @@
+# Enable rewrite engine
+RewriteEngine On
+
+# Set base directory
+RewriteBase /
+
+# Protect sensitive files
+<FilesMatch "^(users\.json|error\.log|docker-compose\.yml|Dockerfile)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Redirect all requests to index.php except for existing files/directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# PHP settings
+<IfModule mod_php.c>
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_value error_log error.log
+    php_value upload_max_filesize 5M
+    php_value post_max_size 6M
+    php_value memory_limit 128M
+    php_value max_execution_time 30
+    php_value max_input_time 60
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Set default charset
+AddDefaultCharset UTF-8
