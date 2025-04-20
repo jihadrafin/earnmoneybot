@@ -1,0 +1,11 @@
+{
+    "123456789": {
+        "balance": 100,
+        "last_earn": 0,
+        "referrals": 1,
+        "ref_code": "abcd1234",
+        "referred_by": null,
+        "name": "Demo User",
+        "joined": "2025-04-20 12:00:00"
+    }
+}

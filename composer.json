@@ -1,0 +1,22 @@
+{
+    "name": "your-name/pho-telegram-bot",
+    "description": "Professional Telegram Bot for earning and referral system",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Your Name",
+            "email": "your.email@example.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.4"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "chmod 666 users.json",
+            "chmod 666 error.log"
+        ]
+    }
+}
